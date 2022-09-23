@@ -151,3 +151,49 @@ for (i in 1:length(productPrices)){
           newprice[i] <- productPrices[i]
      }
 }
+
+
+# ------------------------------------------------------------------------------
+# MLB example
+# ------------------------------------------------------------------------------
+
+rm(list=ls()) # remove all variables from the environment
+
+# load necessary packages
+library("readxl")
+library("tidyverse")
+
+# load data set and get it into the right format for analysis
+mlbdata <- read_excel("MLB_cleaned.xlsx") # load excel data as a tibble
+
+view(mlbdata) # take a glance at the data
+
+# see summary statistics of the data
+summary(mlbdata) # note that this gives you quartile cut-offs and min, max
+
+
+# plot distribution of MLB player heights, with mean, median, mode indicated
+ggplot(mlbdata, aes(x = HeightInch)) + # tell ggplot which variable(s) to plot
+     geom_histogram(binwidth = 1, color=1) + # tell it the type of plot, and settings
+     geom_vline(aes(xintercept = mean(HeightInch)), linetype = "dashed", color = "red") +
+     geom_vline(aes(xintercept = median(HeightInch)), linetype = "solid", color = "black") +
+     theme(text = element_text(size = 20)) # set the font size
+
+# create a new data frame without this outlier
+mlbNoOutliers <- filter(mlbdata, HeightInch < 200)
+
+# same as above, but exclude the visible height outlier
+ggplot(mlbNoOutliers, aes(x = HeightInch)) + # tell ggplot which variable(s) to plot
+     geom_histogram(binwidth = 1, color=1) 
+
+
+# ------------------------------------------------------------------------------
+# Below is an example of how to write a variable to a new excel file
+# the new excel file will show up in your working directory
+# ------------------------------------------------------------------------------
+# first, install the package by typing install.packages("writexl")
+
+library("writexl") # load the writexl package
+
+# This writes the no outliers dataframe to an excel spreadsheet:
+write_xlsx(mlbNoOutliers, "mlb_noOutliers.xlsx")
