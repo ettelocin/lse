@@ -89,3 +89,45 @@ ggplot(data = car) + # tell ggplot what data frame to plot from
      geom_point(mapping = aes(x = cty, y = hwy, color = manufacturer)) + # tell it the type of plot, and settings
      theme(text = element_text(size = 20)) # set the font size
 
+# ------------------------------------------------------------------------------
+# for loops
+# ------------------------------------------------------------------------------
+
+rm(list=ls()) # remove all variables from the environment
+
+# a simple for loop:
+for (i in 1:10){
+     print(i+i)
+}
+
+# a for loop that adds i + i
+for (i in 1:10){
+     print(i+i)
+}
+
+# create a list of prices for products:
+productPrices <- 9:15
+
+# now add five to each product and print the result:
+print(5 + productPrices[1])
+print(5 + productPrices[2])
+print(5 + productPrices[3])
+print(5 + productPrices[4])
+print(5 + productPrices[5])
+print(5 + productPrices[6])
+print(5 + productPrices[7])
+
+# create our new price array that is empty
+newprice <- vector(mode="numeric", length=length(productPrices))
+
+# then fill it in with new price information
+for (i in 1:length(productPrices)){
+     newprice[i] <- productPrices[i] + 5
+     print(newprice[i])
+}
+newprice
+
+# an easier way
+productPrices <- 9:15
+newprice <- productPrices + 5
+
