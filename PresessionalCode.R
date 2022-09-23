@@ -70,3 +70,8 @@ car$year[1:3]
 
 # get a statistical summary of the data frame
 summary(car)
+
+# plot how many of each car manufacturer are in this data set
+ggplot(data = car) + # tell ggplot what data frame to plot from
+     geom_bar(mapping = aes(factor(manufacturer))) + # set bar graph, with manufact. as factor
+     theme(text = element_text(size = 20)) # set the font size
