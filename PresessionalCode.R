@@ -127,7 +127,4 @@ for (i in 1:length(productPrices)){
 }
 newprice
 
-# an easier way
-productPrices <- 9:15
-newprice <- productPrices + 5
-
+productPrices + 5
