@@ -25,3 +25,5 @@ temp[c(1,7)]
 
 # Day 2
 # September 23
+
+car <- ggplot2::mpg
