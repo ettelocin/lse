@@ -38,8 +38,6 @@ example(mean) # see an example use of the function
 # Data Frames
 # ------------------------------------------------------------------------------
 
-# from https://r4ds.had.co.nz/data-visualisation.html
-
 rm(list=ls()) # remove all variables from the environment
 
 # get a built-in data set about cars - note that this won't work because we have 
@@ -74,4 +72,20 @@ summary(car)
 # plot how many of each car manufacturer are in this data set
 ggplot(data = car) + # tell ggplot what data frame to plot from
      geom_bar(mapping = aes(factor(manufacturer))) + # set bar graph, with manufact. as factor
+     theme(text = element_text(size=20)) # set the font size
+
+# look at the distribution of city mileage across all cars in the data set
+ggplot(data = car) + # tell ggplot what data frame to plot from
+     geom_histogram(mapping = aes(x=cty), binwidth=2, color=2) + # tell it the type of plot, what variable, and settings
      theme(text = element_text(size = 20)) # set the font size
+
+# Explore relationship between city and highway miles
+ggplot(data = car) + # tell ggplot what data frame to plot from
+     geom_point(mapping = aes(x = cty, y = hwy)) + # tell it the type of plot, and settings
+     theme(text = element_text(size = 20)) # set the font size
+
+# Explore relationship between city and highway miles, coloring each dot by manufacturer
+ggplot(data = car) + # tell ggplot what data frame to plot from
+     geom_point(mapping = aes(x = cty, y = hwy, color = manufacturer)) + # tell it the type of plot, and settings
+     theme(text = element_text(size = 20)) # set the font size
+
