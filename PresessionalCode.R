@@ -1,29 +1,72 @@
-# Day 1
-# September 22
-#
+# ------------------------------------------------------------------------------
+# variables
+# ------------------------------------------------------------------------------
+# Note that blocks of code are grouped together and separated by spaces
 
-rm(list = ls())
+rm(list=ls()) # remove all variables from the environment
+
+todayTemp <- 34 # store a single number in a variable
+
+temps <- c(34,24) # an array with two numbers
+temps[1] # use indexing to get the first number in the array
+temps[2] # use indexing to get the second number in the array
+
+temps <- 20:30 # create a list of numbers that goes from 20 to 30
+temps[1] + temps[2] # add the first and second number of this array together
+(temps[1]+temps[2]) / 6 # do some arithmetic
+
+profs <- c("Sullivan", "Li", "Kappes") # a string array of profs
+profs[1] # first prof in the array
+
+theSkyIsBlue <- TRUE # a different type of variable - a logical variable
+
+
+# ------------------------------------------------------------------------------
+# functions
+# ------------------------------------------------------------------------------
+
+rm(list=ls()) # remove all variables from the environment
+
+# what is a function?
+temp <- c(34, 33, 28, 25, 24, 24, 24) # create a list of high temperatures
+mean(temp) # get the mean of that list of temperatures
+help(mean) # get help on this function
+example(mean) # see an example use of the function
+
+
+# ------------------------------------------------------------------------------
+# Data Frames
+# ------------------------------------------------------------------------------
+
+# from https://r4ds.had.co.nz/data-visualisation.html
+
+rm(list=ls()) # remove all variables from the environment
+
+# get a built-in data set about cars - note that this won't work because we have 
+# not loaded ggplot2 yet!
+car <- ggplot2::mpg
+
 library("tidyverse")
 
-todayTemp <- 30
-
-temps <- c(34, 24)
-
-temps <- 20:30
-
-profs <- c("Sullivan","Li","Kappes")
-
-theSkyIsBlue <- TRUE
-
-temp <- c(23, 45, 12, 23, 23, 43, 42, 34)
-
-aveTemp <- mean(temp)
-
-# how to get the first and seventh position 
-temp[c(1,7)]
-
-
-# Day 2
-# September 23
-
+# get a built-in data set about cars
 car <- ggplot2::mpg
+
+view(car)
+
+# more indexing - three ways to do the same thing
+# get just the FIRST COLUMN (car manufacturer)
+car[[1]] 
+car[,1]
+car$manufacturer
+
+# still more indexing - three ways to do the same thing
+# get the second observation from the first column
+car[[1]][2]
+car[2,1]
+car$manufacturer[2]
+
+# another example - get the first three years
+car$year[1:3]
+
+# get a statistical summary of the data frame
+summary(car)
