@@ -127,4 +127,27 @@ for (i in 1:length(productPrices)){
 }
 newprice
 
-productPrices + 5
+# easier way to add five to old prices
+newprice <- productPrices + 5
+
+
+# ------------------------------------------------------------------------------
+# if/then statements
+# ------------------------------------------------------------------------------
+
+rm(list=ls()) # remove all variables from the environment
+
+productPrices <- 9:15 # create some product prices
+
+# create a new price variable (a.k.a "vector")
+newprice <- vector(mode="numeric", length=length(productPrices))
+
+# loop through each product ("i") 
+for (i in 1:length(productPrices)){
+     
+     if (productPrices[i] > 11) { # but ONLY if the product is over $11
+          newprice[i] <- productPrices[i] + 5
+     } else {
+          newprice[i] <- productPrices[i]
+     }
+}
